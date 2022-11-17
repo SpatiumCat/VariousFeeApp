@@ -31,7 +31,7 @@ class MainKtTest {
 
         val result = resultAmountWithFee(currentAmount, typeOfAccount, amountForMonth)
 
-        assertEquals(75001, result)
+        assertEquals(75000, result)
     }
 
     @Test
