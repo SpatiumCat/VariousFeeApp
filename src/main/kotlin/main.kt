@@ -11,8 +11,7 @@ fun main() {
 fun resultAmountWithFee(currentAmount: Int, typeOfAccount: String = "VK Pay", amountForMonth: Int = 0): Int =
 
     when (typeOfAccount) {
-        "Mastercard", "Maestro" ->
-            if (currentAmount + amountForMonth in 0..75000) currentAmount
+        "Mastercard", "Maestro" -> if ((currentAmount + amountForMonth) in 0..75000) currentAmount
             else feeForMastercardAndMaestro(currentAmount)
         "Visa", "Mir" -> feeForVisaAndMir(currentAmount)
         else -> currentAmount
@@ -28,5 +27,5 @@ fun feeForVisaAndMir(currentAmount: Int): Int {
     val feePercent = 0.075
     val minimumFee = 35
     val resultFee = (currentAmount * (1 + feePercent)).toInt()
-    return if (resultFee <= minimumFee) currentAmount + minimumFee else resultFee
+    return if (currentAmount * feePercent <= minimumFee) currentAmount + minimumFee else resultFee
 }
